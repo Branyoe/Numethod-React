@@ -1,4 +1,4 @@
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import shallow from "zustand/shallow";
 import useBisectionStore from "../../../stores/BisectionStore";
 import { IlustrationComponent } from "../../FakeRule/components/ResultsComponent";
@@ -34,7 +34,7 @@ export default function ResultsComponentBisection() {
   }
 
   //myCode
-  const { responseBisection, isLoading, hasError, errorMessage, isDirty } = useBisectionStore(state => ({
+  const { isLoading, hasError, errorMessage, isDirty } = useBisectionStore(state => ({
     responseBisection: state.responseBisection,
     isLoading: state.isLoading,
     hasError: state.hasError,

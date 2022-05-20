@@ -29,11 +29,9 @@ let rows = [];
 
 export default function TableComponent({ setIterationsOnFather, container }) {
 
-  const { responseFakeRule, isLoading, hasError, errorMessage } = useFakeRuleStore(state => ({
+  const { responseFakeRule, isLoading } = useFakeRuleStore(state => ({
     responseFakeRule: state.responseFakeRule,
-    isLoading: state.isLoading,
-    hasError: state.hasError,
-    errorMessage: state.errorMessage
+    isLoading: state.isLoading
   }), shallow);
 
   if (isLoading === false) {
@@ -50,6 +48,7 @@ export default function TableComponent({ setIterationsOnFather, container }) {
           v.xRes,
           v.fxRes
         ));
+        return null;
       })
     }
 
