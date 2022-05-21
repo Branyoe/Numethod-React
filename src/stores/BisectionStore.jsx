@@ -37,7 +37,7 @@ const useBisectionStore = create((set, get) => ({
     }
   },
   isDirty: false,
-  setIsDirty: () => {set({isDirty: false})},
+  setIsDirty: () => {set({isDirty: false, hasError: false, responseBisection: []})},
   responseBisection: []
 }));
 

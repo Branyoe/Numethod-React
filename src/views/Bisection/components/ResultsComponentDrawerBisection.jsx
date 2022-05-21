@@ -8,6 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import TableComponentBisection from './TableComponentBisection';
+import shallow from 'zustand/shallow';
+import useBisectionStore from '../../../stores/BisectionStore';
+import { IlustrationComponent } from '../../FakeRule/components/ResultsComponent';
+import LoadinComponent from './LoadingComponent';
+
+import initialIlustration from "../../../assets/initialIlustration.svg"
+import errorIlustration from "../../../assets/errorIlustration.svg"
 
 const drawerBleeding = 56;
 
@@ -39,6 +46,14 @@ function ResultsComponentDrawerBisection(props) {
     setIterationCount(iterationCount);
   }
 
+  const { isLoading, hasError, errorMessage, isDirty, responseBisection } = useBisectionStore(state => ({
+    responseBisection: state.responseBisection,
+    isLoading: state.isLoading,
+    hasError: state.hasError,
+    errorMessage: state.errorMessage,
+    isDirty: state.isDirty
+  }), shallow);
+
   //****************+material code*************************
   const { window } = props;
   const [open, setOpen] = React.useState(false);
@@ -46,6 +61,16 @@ function ResultsComponentDrawerBisection(props) {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+
+  React.useEffect(() => {
+    if(responseBisection.length !== 0 || hasError){
+      setOpen(true)
+      setIterationCount(0);
+    }
+    if(!isDirty){
+      setIterationCount(0);
+    }
+  }, [responseBisection, hasError, isDirty])
 
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -57,7 +82,7 @@ function ResultsComponentDrawerBisection(props) {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(50% - ${drawerBleeding}px)`,
+            height: `calc(95% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
@@ -102,7 +127,19 @@ function ResultsComponentDrawerBisection(props) {
             overflow: 'auto',
           }}
         >
-          <TableComponentBisection setIterationsOnFather={handleSetIterationCount} />
+          {isDirty ?
+            (isLoading ?
+              <LoadinComponent />
+              :
+              (hasError ?
+                <IlustrationComponent img={errorIlustration} message={errorMessage} />
+                :
+                <TableComponentBisection setIterationsOnFather={handleSetIterationCount} />
+              )
+            )
+            :
+            <IlustrationComponent img={initialIlustration} />
+          }
         </StyledBox>
       </SwipeableDrawer>
     </Root>

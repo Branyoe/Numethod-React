@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Card, CardContent, CardMedia, Link } from '@mui/material';
+import { Card, CardContent, CardMedia } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -55,9 +55,6 @@ export default function CardInfoModal({ imgSrc = "", title = "", body = "" }) {
                 </Typography>
                 <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
                   {body + " "}
-                  <Link href="https://prezi.com/meesd8uhaz24/reglafalsamodificada/?frame=920545dd3ecd765e352d22012b101d882227f8c1" underline="always">
-                    {'más..'}
-                  </Link>
                 </Typography>
               </CardContent>
             </Card>

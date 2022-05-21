@@ -8,7 +8,6 @@ import LoadinComponent from "../../../Bisection/components/LoadingComponent";
 
 export default function ResultsComponent() {
 
-  
   //props seccion
   const gridItemProps = {
     item: true,

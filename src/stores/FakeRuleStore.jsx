@@ -36,7 +36,7 @@ const useFakeRuleStore = create((set, get) => ({
     }
   },
   isDirty: false,
-  setIsDirty: () => {set({isDirty: false})},
+  setIsDirty: () => {set({isDirty: false, hasError: false, responseFakeRule: []})},
   responseFakeRule: []
 }));
 

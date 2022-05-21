@@ -8,6 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import TableComponent from '../ResultsComponent/components/TableComponent';
+import useFakeRuleStore from '../../../../stores/FakeRuleStore';
+import { IlustrationComponent } from '../ResultsComponent';
+import LoadinComponent from '../../../Bisection/components/LoadingComponent';
+
+import initialIlustration from "../../../../assets/initialIlustration.svg"
+import errorIlustration from "../../../../assets/errorIlustration.svg"
+import shallow from 'zustand/shallow';
 
 const drawerBleeding = 56;
 
@@ -39,6 +46,14 @@ function ResultsComponentDrawer(props) {
     setIterationCount(iterationCount);
   }
 
+  const { isLoading, hasError, errorMessage, isDirty, responseFakeRule} = useFakeRuleStore(state => ({
+    isLoading: state.isLoading,
+    hasError: state.hasError,
+    errorMessage: state.errorMessage,
+    isDirty: state.isDirty,
+    responseFakeRule: state.responseFakeRule
+  }), shallow);
+
   //****************+material code*************************
   const { window } = props;
   const [open, setOpen] = React.useState(false);
@@ -46,6 +61,16 @@ function ResultsComponentDrawer(props) {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+
+  React.useEffect(() => {
+    if(responseFakeRule.length !== 0 || hasError){
+      setOpen(true)
+      setIterationCount(0);
+    }
+    if(!isDirty){
+      setIterationCount(0);
+    }
+  }, [responseFakeRule, hasError, isDirty])
 
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -57,7 +82,7 @@ function ResultsComponentDrawer(props) {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(50% - ${drawerBleeding}px)`,
+            height: `calc(95% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
@@ -102,7 +127,19 @@ function ResultsComponentDrawer(props) {
             overflow: 'auto',
           }}
         >
-          <TableComponent setIterationsOnFather={handleSetIterationCount} />
+          {isDirty ?
+            (isLoading ?
+              <LoadinComponent />
+              :
+              (hasError ?
+                <IlustrationComponent img={errorIlustration} message={errorMessage} />
+                :
+                <TableComponent setIterationsOnFather={handleSetIterationCount} />
+              )
+            )
+            :
+            <IlustrationComponent img={initialIlustration} />
+          }
         </StyledBox>
       </SwipeableDrawer>
     </Root>
