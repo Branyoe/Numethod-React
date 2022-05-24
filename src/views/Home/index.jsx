@@ -46,21 +46,15 @@ export default function Home() {
             route="/biseccion"
           />
         </Grid>
-        {/* <Grid item sx={{ justifyContent: 'center', display: 'flex' }} xs={12} sm={4} md={3}>
-          <MyCard
-            imgSrc={"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/False_position_method.svg/527px-False_position_method.svg.png"}
-            title={"Integrales definidas"}
-            body="Proviene de la Regula Falsi que es un método iterativo de resolución numérica de ecuaciónes no lineales"
-            route="/integrales-definidas"
-          />
-        </Grid>
         <Grid item sx={{ justifyContent: 'center', display: 'flex' }} xs={12} sm={4} md={3}>
           <MyCard
-            imgSrc={"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/False_position_method.svg/527px-False_position_method.svg.png"}
-            title={"Regla falsa"}
-            body="Proviene de la Regula Falsi que es un método iterativo de resolución numérica de ecuaciónes no lineales"
+            imgSrc={"https://www.classicistranieri.com/wikipediaforschoolses/images/129/12965.png"}
+            title={"Integrales"}
+            description="La integral definida es un caso de la integral utilizado para determinar el valor de las áreas delimitadas por una gráfica dentro de un intervalo y el eje horizontal."
+            body="Dada una función f(x) de una variable real x y un intervalo [a,b] de la recta real, la integral definida es igual al área limitada entre la gráfica de f(x), el eje de abscisas, y las líneas verticales x = a y x = b."
+            route="/biseccion"
           />
-        </Grid> */}
+        </Grid>
       </Grid>
     </Box>
   );
