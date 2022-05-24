@@ -25,13 +25,13 @@ export default function IntervalInput({ formikProps: { values, handleChange, err
       </Typography>
       <Stack direction="row" gap={1}>
         <TextField
-          id="xLInp"
+          id="aInp"
           value={values[0]}
           onChange={handleChange}
           error={errors[0]}
           helperText={helperTexts[0]}
-          name="xLInp"
-          label="xLow"
+          name="aInp"
+          label="a"
           type="number"
           inputProps={
             {
@@ -42,13 +42,13 @@ export default function IntervalInput({ formikProps: { values, handleChange, err
           fullWidth
         />
         <TextField
-          id="xUInp"
+          id="bInp"
           value={values[1]}
           onChange={handleChange}
           error={errors[1]}
           helperText={helperTexts[1]}
-          name="xUInp"
-          label="xUp"
+          name="bInp"
+          label="b"
           type="number"
           size="small"
           inputProps={
