@@ -52,7 +52,7 @@ export default function Home() {
             title={"Integrales"}
             description="La integral definida es un caso de la integral utilizado para determinar el valor de las áreas delimitadas por una gráfica dentro de un intervalo y el eje horizontal."
             body="Dada una función f(x) de una variable real x y un intervalo [a,b] de la recta real, la integral definida es igual al área limitada entre la gráfica de f(x), el eje de abscisas, y las líneas verticales x = a y x = b."
-            route="/biseccion"
+            route="/integrales-definidas"
           />
         </Grid>
       </Grid>
