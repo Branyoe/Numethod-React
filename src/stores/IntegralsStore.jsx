@@ -16,8 +16,8 @@ const useIntegralsStore = create((set) => ({
       });
 
       const responseAPI = await ApiCall({
-        // url: "https://numethod-api-v2.herokuapp.com/api/integralsMethods/defined-integrals",
-        url: "http://127.0.0.1:5000/api/integralsMethods/definite-integral",
+        url: "https://numethod-api-v2.herokuapp.com/api/integralsMethods/definite-integral",
+        // url: "http://127.0.0.1:5000/api/integralsMethods/definite-integral",
         method: "POST",
         body,
         headers
