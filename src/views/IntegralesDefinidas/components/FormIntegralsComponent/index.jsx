@@ -1,5 +1,5 @@
 //MUI
-import { Box, Button, InputAdornment, Stack, TextField } from "@mui/material";
+import { Box, Button, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import IntervalInput from "./components/ItervalInput";
 //zustand
 import shallow from "zustand/shallow";
@@ -12,16 +12,19 @@ import { MathComponent } from 'mathjax-react'
 export default function FromIntegralsComponent() {
   //****************logic seccion******************
   //*consumo de useFakeRuleStore
-  const { postIntegrals, responseIntegrals } = useIntegralsStore(state => ({
+  const { postIntegrals, setIsDirty } = useIntegralsStore(state => ({
     postIntegrals: state.postIntegrals,
-    responseIntegrals: state.responseIntegrals
+    setIsDirty: state.setIsDirty
   }), shallow);
 
-  console.log(responseIntegrals);
+  const cleanForm = () => {
+    formik.resetForm();
+    setIsDirty();
+  };
 
   //formikForm
   const validationSchema = yup.object({
-    itglInp: yup
+    fxInp: yup
       .string("Solo strings")
       .required("campo requerido"),
     aInp: yup
@@ -34,20 +37,22 @@ export default function FromIntegralsComponent() {
 
   const formik = useFormik({
     initialValues: {
-      itglInp: "",
+      fxInp: "",
       aInp: -1,
       bInp: 1
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const requestBody = {
-        itgl: values.itglInp,
-        aInp: values.aInp,
-        bInp: values.bInp
+        fx: values.fxInp,
+        xLow: values.aInp,
+        xUp: values.bInp
       }
-      postIntegrals(requestBody)
+      postIntegrals(requestBody);
     }
   });
+
+  
 
   //props seccion******************
   const boxProps = {
@@ -73,18 +78,28 @@ export default function FromIntegralsComponent() {
     >
       <form onSubmit={formik.handleSubmit}>
         <Stack>
+          <Typography
+            variant='caption'
+            component="div"
+            ml={1}
+            mb={0}
+          >
+            Integral
+          </Typography>
           <TextField
-            id="itglInp"
-            value={formik.values.itglInp}
+            id="fxInp"
+            value={formik.values.fxInp}
             onChange={formik.handleChange}
-            error={formik.touched.fxInp && Boolean(formik.errors.itglInp)}
-            helperText={formik.touched.fxInp && formik.errors.itglInp}
-            name="itglInp"
-            label="Integral"
+            error={formik.touched.fxInp && Boolean(formik.errors.fxInp)}
+            helperText={formik.touched.fxInp && formik.errors.fxInp}
+            name="fxInp"
+            // label="Integral"
             type="search"
+            size="medium"
+            placeholder="f(x)"
             InputProps={{
               startAdornment: <InputAdornment position="start">
-                <MathComponent tex={`\int_{a}^{b}`} />
+                <MathComponent tex={String.raw`\int_{a}^{b}`} />
               </InputAdornment>,
               endAdornment: <InputAdornment position="end">dx</InputAdornment>
             }}
@@ -105,7 +120,7 @@ export default function FromIntegralsComponent() {
           }}
         />
         <Stack direction={"row"} gap={1}>
-          <Button {...btnProps} color="secondary">
+          <Button {...btnProps} onClick={cleanForm} color="secondary">
             Limpiar
           </Button>
           <Button {...btnProps} type="submit">

@@ -50,8 +50,8 @@ export default function Home() {
           <MyCard
             imgSrc={"https://www.classicistranieri.com/wikipediaforschoolses/images/129/12965.png"}
             title={"Integrales"}
-            description="La integral definida es un caso de la integral utilizado para determinar el valor de las áreas delimitadas por una gráfica dentro de un intervalo y el eje horizontal."
-            body="Dada una función f(x) de una variable real x y un intervalo [a,b] de la recta real, la integral definida es igual al área limitada entre la gráfica de f(x), el eje de abscisas, y las líneas verticales x = a y x = b."
+            description="La integral definida es un caso de la integral utilizado para determinar el valor de las "
+            body="áreas delimitadas por una gráfica dentro de un intervalo y el eje horizontal. Dada una función f(x) de una variable real x y un intervalo [a,b] de la recta real, la integral definida es igual al área limitada entre la gráfica de f(x), el eje de abscisas, y las líneas verticales x = a y x = b."
             route="/integrales-definidas"
           />
         </Grid>
