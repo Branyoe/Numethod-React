@@ -1,6 +1,9 @@
 # Numethod
 
-Es un software web que resulve algunos metodos numeriocos, este proyecto está hecho con fines meramente academicos.
+###Es un software web que resulve algunos metodos numeriocos.
+
+El front-end está elaborada utilizando el framework React.js y los estilos de Material-UI y desplegado en Netlify, aunque tambien existe una versión elaborada con Angular.js([Click aquí para echar un vistazo](https://github.com/Branyoe/Numethod-Angular.git))este proyecto está hecho con fines meramente academicos.
+Por otro lado el back-end está escito en python aprovechando su framework para servidores Flask y está desplegado en heroku ([Click aquí para echar un vistazo](https://github.com/Branyoe/Numethod-API.git))
 
 ## ¡Pruebalo!
 
